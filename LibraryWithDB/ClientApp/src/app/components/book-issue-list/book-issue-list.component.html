@@ -1,0 +1,37 @@
+<p>
+  <a class="btn btn-secondary btn-lg" [routerLink]="['/bookIssue/new']">Issue Book</a>
+</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>BookIssueID</th>
+      <th>Issue Date</th>
+      <th>Registered</th>
+      <th>Member Name</th>
+      <th>Image</th>
+      <th>Book</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let b of bookIssues">
+      <td>{{b.bookIssueID}}</td>
+      <td>{{b.issueDate |date:shortDate}}</td>
+      <td>{{b.registered}}</td>
+      <td>{{b.memberName}}</td>
+      <!--<td>{{b.imagePath}}</td>-->
+    <td>
+      <img class="images" src="{{b.imagePath}}" alt="Image Unavailable" width="80" height="80" />
+      <!--<img src="/Images/default.png" alt="Image Unavailable" width="80" height="80"/>-->
+      <!--<img class="images" src="{{b.imagePath}}" alt="Image Unavailable" width="80" height="80" />-->
+
+    </td>
+      <td>{{b.id}}</td>
+      <td>
+        <a class="btn btn-info btn-sm" [routerLink]="['/bookIssue/', b.bookIssueID]">Edit</a>
+        <button class="btn btn-danger btn-sm" (click)="delete(b.bookIssueID)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

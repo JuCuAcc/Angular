@@ -1,0 +1,59 @@
+<br />
+<h2>Book Issue Info </h2>
+<br />
+<p>
+  <a [routerLink]="['/bookIssue']" class="btn btn-primary">Back to List</a>
+</p>
+<form #f="ngForm" (ngSubmit)="submit()">
+  <div class="form-group col-md-6">
+    <label for="issueDate">IssueDate</label>
+    <input type="date" id="issueDate" class="form-control" [(ngModel)]="bookIssue.issueDate" name="issueDate" required #issueDate="ngModel" />
+    <div class="alert alert-danger" *ngIf="issueDate.touched && !issueDate.valid">Please Select Date</div>
+  </div>
+
+  <div class="form-group col-md-10">
+    <label for="registered">Registered</label>
+    <div>
+      <input type="radio" id="registered1" [value]="false" class="form-control" [(ngModel)]="bookIssue.registered" name="registered" #registered="ngModel" />No
+      <input type="radio" id="registered2" [value]="true" class="form-control" [(ngModel)]="bookIssue.registered" name="registered" #registered="ngModel" />Yes
+    </div>
+  <!--<div class="alert alert-danger" *ngIf="registered.touched && !registered.valid">Please Select Registration Status</div>-->
+  </div>
+
+  <!--<div class="form-group col-md-6">
+    <label for="registered">Registered</label>
+    <div>
+      <select class="form-control" [(ngModel)]="bookIssue.registered" name="registered" required #registered="ngModel">-->
+        <!--<option value="">-- Select Status --</option>-->
+        <!--<option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+  </div>-->
+
+  <div class="form-group col-md-6">
+    <label for="memberName">Member Name</label>
+    <input type="text" id="memberName" class="form-control" [(ngModel)]="bookIssue.memberName" name="memberName" required #memberName="ngModel" />
+    <div class="alert alert-danger" *ngIf="memberName.touched && !memberName.valid">Please Enter Name</div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="imagePath">Choose Image</label>
+    <input type="file" id="imagePath" class="form-control" [(ngModel)]="bookIssue.imagePath" name="imagePath" required #imagePath="ngModel" />
+    <!--<input type="text" id="imagePath" class="form-control" [(ngModel)]="bookIssue.imagePath" name="imagePath" required #imagePath="ngModel" />-->
+    <div class="alert alert-danger" *ngIf="imagePath.touched && !imagePath.valid">Please Upload an Image</div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="title">Book</label>
+    <div>
+      <select class="form-control" id="id" [(ngModel)]="bookIssue.id" name="id" required #id="ngModel">
+        <option [ngValue]="0">--Select Book--</option>
+        <option *ngFor="let bk of bookList" [ngValue]="bk.id">{{bk.title}}</option>
+      </select>
+    </div>
+  </div>
+
+  <input type="submit" class="btn btn-primary btn-lg" [disabled]="!f.valid" value="Add" *ngIf="!bookIssue.bookIssueID" />
+  <input type="submit" class="btn btn-info btn-lg" value="Update" *ngIf="bookIssue.bookIssueID" />
+</form>

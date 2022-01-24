@@ -1,0 +1,39 @@
+ <!--This Form Need to be Edited-->
+
+<h2>Book Information</h2>
+
+<p>
+  <a class="navbar-brand" [routerLink]="['/trainee']">Back To List</a>
+</p>
+
+<form #f="ngForm" (ngSubmit)="submit()">
+
+  <div class="form-group col-md-6">
+    <label for="title">Title</label>
+    <input type="text" id="title" class="form-control" name="title" required [(ngModel)]="book.title" #title="ngModel" />
+    <div class="alert alert-danger" *ngIf="title.touched && !title.valid">Please, Enter Book Title</div>
+  </div>
+
+
+  <div class="form-group col-md-6">
+    <label for="edition">Edition</label>
+    <input type="text" id="edition" class="form-control" name="edition" required [(ngModel)]="book.edition" #edition="ngModel" />
+    <div class="alert alert-danger" *ngIf="edition.touched && !edition.valid">Please, Enter Book Edition</div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="publisher">Publisher</label>
+    <input type="text" id="publisher" class="form-control" name="publisher" required [(ngModel)]="book.publisher" #publisher="ngModel" />
+    <div class="alert alert-danger" *ngIf="publisher.touched && !publisher.valid">Please, Enter Publisher Name</div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="isbn">ISBN</label>
+    <input type="text" id="isbn" class="form-control" name="isbn" required [(ngModel)]="book.isbn" #isbn="ngModel" />
+    <div class="alert alert-danger" *ngIf="isbn.touched && !isbn.valid">Please, Enter Book ISBN</div>
+  </div>
+
+
+  <input type="submit" class="btn btn-primary btn-lg" value="Add" [disabled]="!f.valid" *ngIf="!book.id" />
+  <input type="submit" class="btn btn-secondary btn-lg" value="Update" *ngIf="book.id" />
+</form>

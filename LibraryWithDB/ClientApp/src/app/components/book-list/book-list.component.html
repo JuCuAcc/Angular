@@ -1,0 +1,36 @@
+
+<h1>Book List</h1>
+
+<p>
+  <a class="navbar-brand" [routerLink]="['/book/new']">Add New Book</a>
+</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Serial No.</th>
+      <th>Title</th>
+      <th>Edition</th>
+      <th>Publisher</th>
+      <th>ISBN</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let b of books">
+      <td>{{b.id}}</td>
+      <td>{{b.title}}</td>
+      <td>{{b.edition}}</td>
+      <td>{{b.publisher}}</td>
+      <td>{{b.isbn}}</td>
+      <td>
+        <!--<a class="btn btn-primary" [routerLink]="['/book/:id']">Edit</a>-->
+        <a class="btn btn-primary" [routerLink]="['/book/', b.id]">Edit</a>
+        <button class="btn btn-danger" (click)="delete(b.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
